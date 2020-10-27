@@ -1,13 +1,22 @@
-from enum import Enum, IntEnum
+from enum import Enum
 
 
-class Years(str, Enum):
-    y2020 = "2020-2021"
-    y2019 = "2019-2020"
-    y2018 = "2018-2019"
+class Category(str, Enum):
+    SALARY = "Salary"
+    EXTRA_INCOME = "Extra Income"
+    HOME = "Home"
+    GROCERIES = "Groceries"
+    RESTAURANTS = "Restaurants"
+    PARTY = "Party"
+    TRAVEL = "Travel"
+    BILLS = "Bills"
+    HEALTHCARE = "Healthcare"
+    BEAUTY = "Beauty"
+    ENTERTAINMENT = "Entertainment"
+    SAVINGS = "Savings"
+    CLOUD = "Cloud"
 
 
-class Foot(str, Enum):
-    right = "diestro"
-    left = "zurdo"
-    both = "ambidiestro"
+class Transaction(str, Enum):
+    INCOME = "Income"
+    EXPENSE = "Expense"

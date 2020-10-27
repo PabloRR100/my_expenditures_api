@@ -1,4 +1,4 @@
-# root/sql_app/database.py
+# root/app/database.py
 
 """ SQLAlchemy parts 
 Notes:
@@ -16,7 +16,7 @@ from sqlalchemy.orm import sessionmaker
 # Databases
 databases = dict(
     sqlite=dict(
-        url="sqlite:///./sql_app.db",
+        url="sqlite:///./app.db",
         engine_args={"check_same_thread": False}
     ),
     postgres=dict(
@@ -27,6 +27,8 @@ databases = dict(
 
 # This is the line to modify to use a different database
 DATABASE = "sqlite"
+
+#
 SQLALCHEMY_DATABASE_URL = databases[DATABASE]["url"]
 ENGINE = create_engine(
     databases[DATABASE]["url"],
@@ -41,3 +43,17 @@ SessionLocal = sessionmaker(
 
 Base = declarative_base()
 
+
+# Create a database session and close it after finishing.
+def get_db():
+    # Only the code prior to and including the yield statement
+    # is executed before sending a response
+    db = SessionLocal()
+    try:
+        # The yielded value is what is injected into path
+        # operations and other dependencies
+        yield db
+    # The code following the yield statement is executed after
+    # the response has been delivered:
+    finally:
+        db.close()

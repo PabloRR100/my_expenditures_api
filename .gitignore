@@ -1,5 +1,11 @@
+#
+.idea
+.code
+
+#
 __pycache__/
 
 #
 env/
+venv/
 .python-version
