@@ -54,8 +54,8 @@ def list_categories(
     response_model=schemas.Category
 )
 def get_season_by_name(
-        category_name: str = Path(..., name="Groceries"),
-        db: Session = Depends(get_db),
+    category_name: str = Path(..., name="Groceries"),
+    db: Session = Depends(get_db),
 ):
     return CRUD.get_category_by_name(
         db=db, name=category_name
@@ -74,6 +74,11 @@ def create_category(
         category: schemas.Category,
         db: Session = Depends(get_db),
 ):
+    """
+    Create a new category
+
+    - **category**
+    """
     return CRUD.create_category(db, category)
 
 
@@ -99,15 +104,16 @@ def update_category_by_name(
     response_model=schemas.Category
 )
 def delete_category(
-        identifier: Union[int, str],
-        db: Session = Depends(get_db),
+    # category_name: Union[int, str],
+    category_name: str,
+    db: Session = Depends(get_db),
 ):
-    if isinstance(identifier, int):
-        return CRUD.remove_category_by_id(db, identifier)
-    elif isinstance(identifier, str):
-        return CRUD.remove_category_by_name(db, identifier)
+    if isinstance(category_name, int):
+        return CRUD.remove_category_by_id(db, category_name)
+    elif isinstance(category_name, str):
+        return CRUD.remove_category_by_name(db, category_name)
     else:
         raise HTTPException(
             status_code=404,
-            detail="Identifier must be either id (int) or name (str)"
+            detail="category_name must be either id (int) or name (str)"
         )

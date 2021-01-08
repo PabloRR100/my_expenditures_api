@@ -1,0 +1,17 @@
+Exp-API
+
+# - PUT. PATCH method
+
+# - APIRouters
+
+- Make Async (PENDING)
+
+# - Extend to other Classes
+
+- Create the Relationships
+
+- Extend to Postgres
+
+- Extend to localstack.Dynamo
+
+- Extend to Docker-Compose

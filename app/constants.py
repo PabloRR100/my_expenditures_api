@@ -15,6 +15,7 @@ class Category(str, Enum):
     ENTERTAINMENT = "Entertainment"
     SAVINGS = "Savings"
     CLOUD = "Cloud"
+    STOCK = "Stock"
 
 
 class Transaction(str, Enum):
